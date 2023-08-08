@@ -38,19 +38,15 @@ public class  LoginController {
                 .status(apiResponse.getStatus())
                 .body(apiResponse);
     }
+    @GetMapping("/privateApi")
+    public ResponseEntity<APIResponse> privateApi() {
+        APIResponse apiResponse = new APIResponse();
 
-//    @GetMapping("/privateApi")
-//    public ResponseEntity<APIResponse> privateApi(@RequestHeader(value = "authorization", defaultValue = "empty") String auth) throws Exception {
-//        APIResponse apiResponse = new APIResponse();
-//
-//
-//        String authorization= "";
-//        jwtUtils.verify(authorization);
-//        apiResponse.setData("This is private api");
-//
-//        return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
-//    }
-
+        apiResponse.setData("this is private Api");
+        return ResponseEntity
+                .status(apiResponse.getStatus())
+                .body(apiResponse);
+    }
 
 }
 
