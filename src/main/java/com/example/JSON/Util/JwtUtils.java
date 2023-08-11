@@ -1,5 +1,7 @@
 package com.example.JSON.Util;
 
+
+import com.example.JSON.common.AccessDeniedException;
 import com.example.JSON.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -43,11 +45,12 @@ public class JwtUtils {
 
     }
 
-//    public void verify(String authorization) throws Exception {
-//        try {
-//            Jwts.parser().setSigningKey(secret).parseClaimsJws(authorization);
-//        } catch (Exception e) {
-//            throw new Exception();
-//        }
-//    }
+    public void verify(String authorization) throws Exception {
+        try {
+            Jwts.parser().setSigningKey(secret).parseClaimsJws(authorization);
+        } catch (Exception e) {
+            //throw new AccessDeniedException("Access Denied");
+            throw new Exception();
+        }
+    }
 }

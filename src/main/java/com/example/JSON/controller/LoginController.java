@@ -38,14 +38,20 @@ public class  LoginController {
                 .status(apiResponse.getStatus())
                 .body(apiResponse);
     }
+
     @GetMapping("/privateApi")
-    public ResponseEntity<APIResponse> privateApi() {
+//   public ResponseEntity<APIResponse> privateApi() {
+    // public ResponseEntity<APIResponse> privateApi() throws Exception {
+    public ResponseEntity<APIResponse> privateApi(@RequestHeader (value = "authorization", defaultValue = "notfound")String auth) throws Exception {
         APIResponse apiResponse = new APIResponse();
 
+//        System.out.println(auth);
+//        String authorization = " ";
+//        jwtUtils.verify(authorization);
+        jwtUtils.verify(auth);
+
         apiResponse.setData("this is private Api");
-        return ResponseEntity
-                .status(apiResponse.getStatus())
-                .body(apiResponse);
+        return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
     }
 
 }
